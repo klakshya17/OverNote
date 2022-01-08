@@ -1,13 +1,18 @@
-console.log("App Starting...")
+console.log("App.js Starting...")
 const os = require("os")
 const fs = require("fs")
+const notes = require("./notes.js")
+const _ = require("lodash")
 
-var user = os.userInfo()
+var res = notes.addNote()
 
-console.log(user)
+console.log(_.isString("lakshua"))
+console.log(_.isString(4))
 
-fs.appendFile("greetings.txt", `Hello ${user.username}`, function (err) {
-  if (err) {
-    console.log("Unable to write to file")
-  }
-})
+// var user = os.userInfo()
+
+// fs.appendFile("greetings.txt", `Hello ${user.username}`, function (err) {
+//     if (err) {
+//         console.log("Unable to write to file")
+//     }
+// })
