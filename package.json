@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/klakshya17/OverNote#readme",
   "dependencies": {
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "yargs": "^4.7.1"
   }
 }

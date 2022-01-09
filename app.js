@@ -1,18 +1,26 @@
 console.log("App.js Starting...")
-const os = require("os")
-const fs = require("fs")
+
 const notes = require("./notes.js")
 const _ = require("lodash")
+const yargs = require("yargs")
+const { getNote } = require("./notes.js")
 
-var res = notes.addNote()
+const argv = yargs.argv
 
-console.log(_.isString("lakshua"))
-console.log(_.isString(4))
+console.log("Yargs: ", argv)
 
-// var user = os.userInfo()
+var command = argv._[0]
 
-// fs.appendFile("greetings.txt", `Hello ${user.username}`, function (err) {
-//     if (err) {
-//         console.log("Unable to write to file")
-//     }
-// })
+console.log("Command:", command)
+
+if (command === "add") {
+  notes.addNote(argv.title, argv.body)
+} else if (command === "list") {
+  notes.getAll()
+} else if (command == "read") {
+  notes.getNote(argv.title)
+} else if (command == "remove") {
+  notes.removeNote(argv.title)
+} else {
+  console.log("Command not recognised")
+}
