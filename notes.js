@@ -2,6 +2,7 @@ console.log("Starting Notes.js...")
 
 const fs = require("fs")
 
+//function to fetch all notes from json file
 var fetchNotes = () => {
   try {
     var noteString = fs.readFileSync("notes-data.json")
@@ -11,10 +12,12 @@ var fetchNotes = () => {
   }
 }
 
+// re-write the json file with given argument
 var saveNotes = (notes) => {
   fs.writeFileSync("notes-data.json", JSON.stringify(notes))
 }
 
+//function to add a note to the list
 var addNote = (title, body) => {
   var notes = fetchNotes()
   var note = {
@@ -29,14 +32,33 @@ var addNote = (title, body) => {
     return note
   }
 }
+
+//function to fetch all of the notes and display it to the users
 var getAll = () => {
-  console.log("Getting all notes")
+  var notes = fetchNotes()
+  return notes
 }
+
+//function to fetch a single note with given title
 var getNote = (title) => {
-  console.log(`Getting ${title}`)
+  notes = fetchNotes()
+  var note = notes.filter((note) => note.title === title)
+
+  if (note.length === 1) return note[0]
+  else {
+  }
 }
+
+//function to delete a note with given title
 var removeNote = (title) => {
-  console.log(`removing ${title}`)
+  notes = fetchNotes()
+  var newNotes = notes.filter((note) => note.title !== title)
+
+  if (notes.length === newNotes.length) return 0
+  else {
+    saveNotes(newNotes)
+    return 1
+  }
 }
 
 module.exports = {
