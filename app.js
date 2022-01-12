@@ -14,7 +14,12 @@ var command = argv._[0]
 console.log("Command:", command)
 
 if (command === "add") {
-  notes.addNote(argv.title, argv.body)
+  var note = notes.addNote(argv.title, argv.body)
+  if (note) {
+    console.log(`Note Added: ${note.title}`)
+  } else {
+    console.log("Error: Note title already taken")
+  }
 } else if (command === "list") {
   notes.getAll()
 } else if (command == "read") {
