@@ -62,7 +62,7 @@ var removeNote = (title) => {
 }
 
 module.exports = {
-  addNote: addNote,
+  addNote,
   getAll,
   getNote,
   removeNote,

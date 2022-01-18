@@ -3,10 +3,28 @@ console.log("App.js Starting...")
 const notes = require("./notes.js")
 const _ = require("lodash")
 const yargs = require("yargs")
-const { getNote } = require("./notes.js")
 
-const argv = yargs.argv
-console.log("Yargs: ", argv)
+var title = {
+  describe: "Title of note",
+  demand: true,
+  alias: "t",
+}
+var body = {
+  describe: "Body of the note",
+  demand: true,
+  alias: "b",
+}
+
+//getting user input
+const argv = yargs
+  .command("add", "Add a new note", {
+    title: title,
+    body: body,
+  })
+  .command("list", "List all notes")
+  .command("read", "Read a note", { title: title })
+  .command("remove", "Remove a note from list", { title: title })
+  .help().argv
 
 var command = argv._[0]
 console.log("Command:", command)
@@ -52,5 +70,5 @@ else if (command == "remove") {
 
 //for unrecognised commands
 else {
-  console.log("Command not recognised")
+  console.log("Command not recognised, try --help for help")
 }
